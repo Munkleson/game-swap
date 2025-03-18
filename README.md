@@ -1,1 +1,5 @@
-Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/rails-templates), created by the [Le Wagon coding bootcamp](https://www.lewagon.com) team.
+Game Swap
+
+An app where you can rent physical games from people close to you
+
+Link: https://game-swap-e551a983a6f1.herokuapp.com/
