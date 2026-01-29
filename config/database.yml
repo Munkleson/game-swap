@@ -79,6 +79,7 @@ test:
 #
 production:
   <<: *default
-  database: game_swap_production
-  username: game_swap
-  password: <%= ENV["GAME_SWAP_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
+  # database: game_swap_production
+  # username: game_swap
+  # password: <%= ENV["GAME_SWAP_DATABASE_PASSWORD"] %>
