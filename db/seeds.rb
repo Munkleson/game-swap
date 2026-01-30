@@ -13,6 +13,12 @@ require 'open-uri'
 require 'json'
 require 'faker'
 
+# Prevent accidental seeding in production
+if Rails.env.production? && ENV['ALLOW_SEED'] != 'true'
+  puts "❌ Seeding disabled in production. Set ALLOW_SEED=true to override."
+  exit
+end
+
 ### Gets the bearer token needed. May be inefficient since we need to get a new one every time we seed (which would be done all in one go anyway, but still)
 
 url = URI.parse("https://id.twitch.tv/oauth2/token")
@@ -405,6 +411,10 @@ def seed_messages_and_chats
   puts "Chats and messages seeding complete"
 end
 
-seed_dev
-seed_db_details
-seed_messages_and_chats
+if Rails.env.production?
+  load Rails.root.join("db/seeds/production.rb")
+else
+  seed_dev
+  seed_db_details
+  seed_messages_and_chats
+end
